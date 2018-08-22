@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {RatingComponent} from './rating/rating.component';
 
 @Component({
   selector: 'ck-root',
@@ -7,6 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AwesomeSocial';
+
+  courseRating = 3;
+  teacherRating = 4;
+
+  static hello(): RatingComponent {
+    return new RatingComponent();
+  }
 
   saveCourseRating(rating: number) {
     console.log('saveCourseRating called ', rating);

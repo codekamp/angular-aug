@@ -1,5 +1,20 @@
 <h4>How helpful was the course?</h4>
-<ck-rating (ratingChange)="saveCourseRating($event)"></ck-rating>
+
+<!--
+1. Search of a component with selector ck-rating in AppModule's declaration.
+2. Create object of component found. const rComp = new RatingComponent();
+3. rComp.rating = 'Neutral'; and so on...
+4. rComp.ngOnInit(); if component has ngOnInit
+5. Insert html of RatingComponent between opening and closing ck-rating tags.
+
+
+
+sometime later rComp.ngOnChanges()
+
+-->
+<ck-rating [rating]="courseRating" (ratingChange)="saveCourseRating($event)"></ck-rating>
 
 <h4>How was teacher's way of teaching?</h4>
-<ck-rating (ratingChange)="saveTeacherRating($event)"></ck-rating>
+<ck-rating [rating]="teacherRating" (ratingChange)="saveTeacherRating($event)"></ck-rating>
+
+<button (click)="courseRating = 5; teacherRating = 1">Change Rating</button>

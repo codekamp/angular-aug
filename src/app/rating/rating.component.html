@@ -1,3 +1,12 @@
+<!--
+Three things are treated as Typescript code in html by Angular.
+1. Anything inside double curly braces e.g. {{rating}}
+Run on html load and refresh and out is inserted in html
+2. Anything inside double quotes of @Output e.g. (click)="onStarClick(1)"
+Run on event emit
+3. Anything inside double quotes of @Input e.g. [rating]="teacherRating"
+Run on html load and refresh and output is passed to input.
+-->
 <p>Your Rating: {{rating}}</p>
 <img src="{{getImageUrlForStar(1)}}" (click)="onStarClick(1)">
 <img src="{{getImageUrlForStar(2)}}" (click)="onStarClick(2)">
