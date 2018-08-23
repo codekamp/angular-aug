@@ -1,4 +1,4 @@
-<h4>How helpful was the course?</h4>
+<!--<h4>How helpful was the course?</h4>-->
 
 <!--
 1. Search of a component with selector ck-rating in AppModule's declaration.
@@ -6,15 +6,19 @@
 3. rComp.rating = 'Neutral'; and so on...
 4. rComp.ngOnInit(); if component has ngOnInit
 5. Insert html of RatingComponent between opening and closing ck-rating tags.
+6. rComp.ngAfterViewInit()
 
-
-
-sometime later rComp.ngOnChanges()
+if any of the input changes rComp.ngOnChanges()
+ngDoCheck() called whenever angular runs change detection
 
 -->
-<ck-rating [rating]="courseRating" (ratingChange)="saveCourseRating($event)"></ck-rating>
+<!--<ck-rating [rating]="courseRating" [something]="teacherRating" (ratingChange)="saveCourseRating($event)"><h1>Welcome to Angular world</h1></ck-rating>-->
 
-<h4>How was teacher's way of teaching?</h4>
-<ck-rating [rating]="teacherRating" (ratingChange)="saveTeacherRating($event)"></ck-rating>
+<!--<h4>How was teacher's way of teaching?</h4>-->
+<!--<ck-rating [rating]="teacherRating" (ratingChange)="saveTeacherRating($event)"></ck-rating>-->
 
-<button (click)="courseRating = 5; teacherRating = 1">Change Rating</button>
+<!--<button (click)="courseRating = 5">Change Course Rating</button>-->
+<!--<button (click)="teacherRating = 1">Change Teacher Rating</button>-->
+
+
+<ck-login-page></ck-login-page>

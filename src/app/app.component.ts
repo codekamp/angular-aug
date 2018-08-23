@@ -25,3 +25,5 @@ export class AppComponent {
     console.log('saveTeacherRating called ', rating);
   }
 }
+
+// https://cssreference.io/flexbox
