@@ -4,27 +4,29 @@
 
 
 <!-- https://github.com/angular/flex-layout  -->
-<div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign.xs="start" fxFlex="400px" fxShow="false" fxShow.xs="true">
-  <div style="background: red; height: 200px; flex-basis: 200px; flex-shrink: 0">1</div>
-  <div style="background: green; height: 200px; flex-basis: 200px; flex-shrink: 0">2</div>
-  <span style="flex-grow: 1; flex-shrink: 1; flex-basis: 0"></span>
-  <div style="background: orange; height: 200px; flex-basis: 200px; flex-shrink: 0">4</div>
-</div>
+<!--<div fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign.xs="start" fxFlex="400px" fxShow="false" fxShow.xs="true">-->
+  <!--<div style="background: red; height: 200px; flex-basis: 200px; flex-shrink: 0">1</div>-->
+  <!--<div style="background: green; height: 200px; flex-basis: 200px; flex-shrink: 0">2</div>-->
+  <!--<span style="flex-grow: 1; flex-shrink: 1; flex-basis: 0"></span>-->
+  <!--<div style="background: orange; height: 200px; flex-basis: 200px; flex-shrink: 0">4</div>-->
+<!--</div>-->
 
 
-<img src="" src.xs="" [ngClass]="'something'" [ngClass.xs]="'anotherthing'">
+<!--<img src="" src.xs="" [ngClass]="'something'" [ngClass.xs]="'anotherthing'">-->
 
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100%">
   <mat-card style="width: 500px; margin: 20px; flex-shrink: 0">
-    <form style="display: flex; flex-direction: column">
+    <form style="display: flex; flex-direction: column" (submit)="login(); $event.preventDefault()">
       <mat-form-field>
-        <input matInput placeholder="username" type="text">
+        <input #uname id="hello" matInput placeholder="username" type="text">
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="password" type="password">
+        <input #pswd matInput placeholder="password" type="password">
       </mat-form-field>
-      <button mat-raised-button color="primary" style="align-self: flex-end">Login</button>
+        <button mat-raised-button color="primary" style="align-self: flex-end">Login</button>
     </form>
   </mat-card>
 </div>
+
+<!--  var uname = document.getElementById('hello');  -->

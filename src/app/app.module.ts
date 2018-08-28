@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageComponent } from './login-page/login-page.component';
 import {MatButtonModule, MatCardModule, MatInputModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {HttpClientModule} from '@angular/common/http';
+import {LoginService} from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,12 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

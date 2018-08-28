@@ -6,7 +6,8 @@
 3. rComp.rating = 'Neutral'; and so on...
 4. rComp.ngOnInit(); if component has ngOnInit
 5. Insert html of RatingComponent between opening and closing ck-rating tags.
-6. rComp.ngAfterViewInit()
+6. if RatingComponent has any ViewChild/ViewChildren then set their values
+7. rComp.ngAfterViewInit()
 
 if any of the input changes rComp.ngOnChanges()
 ngDoCheck() called whenever angular runs change detection
