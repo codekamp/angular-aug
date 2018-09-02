@@ -1,5 +1,7 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../services/login.service';
+import {FormControl} from '@angular/forms';
+import {debounceTime, filter, map} from 'rxjs/internal/operators';
 
 @Component({
   selector: 'ck-login-page',
@@ -8,18 +10,28 @@ import {LoginService} from '../services/login.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  @ViewChild('uname') usernameField: ElementRef;
-  @ViewChild('pswd') passwordField: ElementRef;
+  usernameControl = new FormControl();
+  passwordControl = new FormControl();
 
   constructor(private  loginService: LoginService) {
   }
 
   ngOnInit() {
+    const a = this.usernameControl.valueChanges;
+
+    const b = a.pipe(debounceTime(2000));
+
+    b.subscribe(val => {
+      console.log('New username value', val);
+    });
   }
 
   login() {
-    const username = this.usernameField.nativeElement.value;
-    const password = this.passwordField.nativeElement.value;
+    // const username = this.usernameField.nativeElement.value;
+    // const password = this.passwordField.nativeElement.value;
+
+    const username = this.usernameControl.value;
+    const password = this.passwordControl.value;
 
     this.loginService.login(username, password);
   }

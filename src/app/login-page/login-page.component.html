@@ -19,10 +19,10 @@
   <mat-card style="width: 500px; margin: 20px; flex-shrink: 0">
     <form style="display: flex; flex-direction: column" (submit)="login(); $event.preventDefault()">
       <mat-form-field>
-        <input #uname id="hello" matInput placeholder="username" type="text">
+        <input [formControl]="usernameControl" id="hello" matInput placeholder="username" type="text">
       </mat-form-field>
       <mat-form-field>
-        <input #pswd matInput placeholder="password" type="password">
+        <input [formControl]="passwordControl" matInput placeholder="password" type="password">
       </mat-form-field>
         <button mat-raised-button color="primary" style="align-self: flex-end">Login</button>
     </form>

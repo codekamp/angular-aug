@@ -9,7 +9,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import {MatButtonModule, MatCardModule, MatInputModule} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {HttpClientModule} from '@angular/common/http';
-import {LoginService} from './services/login.service';
+import {API_URL, LoginService, XYZ_SOMETHING} from './services/login.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,10 +26,14 @@ import {LoginService} from './services/login.service';
     MatButtonModule,
     MatInputModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    LoginService
+    LoginService,
+    {provide: API_URL, useValue: 'http://hello.com'},
+    {provide: XYZ_SOMETHING, useValue: 'some random value'}
   ],
   bootstrap: [AppComponent]
 })
