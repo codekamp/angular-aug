@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from '../services/login.service';
 import {FormControl} from '@angular/forms';
-import {debounceTime, filter, map} from 'rxjs/internal/operators';
+import {debounceTime, distinctUntilChanged, reduce} from 'rxjs/internal/operators';
 
 @Component({
   selector: 'ck-login-page',
@@ -19,11 +19,33 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
     const a = this.usernameControl.valueChanges;
 
-    const b = a.pipe(debounceTime(2000));
+    const b = a.pipe(debounceTime(2000), distinctUntilChanged());
 
     b.subscribe(val => {
-      console.log('New username value', val);
+      console.log('auto save value', val);
     });
+
+
+
+
+
+
+
+
+
+    b.pipe(reduce((x, y) => x + y, 30)).subscribe(value => console.log(value));
+
+    // const uObs = this.usernameControl.valueChanges.pipe(startWith(null));
+    // const pObs = this.passwordControl.valueChanges.pipe(startWith(null));
+
+    // const output = uObs.pipe(combineLatest(pObs, (uname, pswd) => {
+    //   return {u: uname, p: pswd};
+    // }));
+
+    // const output = combineLatest(uObs, pObs, (uname, pswd) => {
+    //   return {u: uname, p: pswd};
+    // });
+    // output.subscribe(data => console.log('combined data is', data));
   }
 
   login() {
