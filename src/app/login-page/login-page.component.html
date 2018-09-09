@@ -17,14 +17,16 @@
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100%">
   <mat-card style="width: 500px; margin: 20px; flex-shrink: 0">
-    <form style="display: flex; flex-direction: column" (submit)="login(); $event.preventDefault()">
+    <form [formGroup]="loginForm" style="display: flex; flex-direction: column" (submit)="login(); $event.preventDefault()">
       <mat-form-field>
-        <input [formControl]="usernameControl" id="hello" matInput placeholder="username" type="text">
+        <input formControlName="uname" id="hello" matInput placeholder="mobile" type="text">
+        <mat-error>Mobile is invalid</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input [formControl]="passwordControl" matInput placeholder="password" type="password">
+        <mat-error>Password is invalid</mat-error>
       </mat-form-field>
-        <button mat-raised-button color="primary" style="align-self: flex-end">Login</button>
+      <button mat-raised-button color="primary" style="align-self: flex-end" [disabled]="loginForm.invalid">Login</button>
     </form>
   </mat-card>
 </div>
