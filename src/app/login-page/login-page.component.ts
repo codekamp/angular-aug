@@ -3,6 +3,7 @@ import {LoginService} from '../services/login.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BaseComponent} from '../base.component';
 import {Validators as MyValidtors} from '../validators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ck-login-page',
@@ -11,12 +12,13 @@ import {Validators as MyValidtors} from '../validators';
 })
 export class LoginPageComponent extends BaseComponent implements OnInit {
 
+  signup: boolean;
 
   loginForm: FormGroup;
   usernameControl: FormControl;
   passwordControl: FormControl;
 
-  constructor(private  loginService: LoginService) {
+  constructor(private  loginService: LoginService, private router: Router) {
     super();
   }
 
@@ -38,7 +40,10 @@ export class LoginPageComponent extends BaseComponent implements OnInit {
 
     console.log(this.loginForm.value);
 
-    this.loginService.login(username, password);
+    // window.location.href = '/dashboard';
+
+    // this.router.navigateByUrl('/dashboard');
+    this.router.navigate(['dashboard']);
   }
 }
 

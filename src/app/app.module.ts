@@ -11,13 +11,21 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {HttpClientModule} from '@angular/common/http';
 import {API_URL, LoginService, XYZ_SOMETHING} from './services/login.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SignupPageComponent } from './signup-page/signup-page.component';
+import {RouterModule, Routes} from '@angular/router';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {myMaping} from './routes';
 
 @NgModule({
   declarations: [
     AppComponent,
     RatingComponent,
     SliderComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    SignupPageComponent,
+    NotFoundComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +36,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(myMaping)
   ],
   providers: [
     LoginService,
