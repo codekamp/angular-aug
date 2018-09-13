@@ -6,7 +6,10 @@ import {RatingComponent} from './rating/rating.component';
 import { SliderComponent } from './slider/slider.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageComponent } from './login-page/login-page.component';
-import {MatButtonModule, MatCardModule, MatInputModule} from '@angular/material';
+import {
+  MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatMenuModule,
+  MatToolbarModule
+} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {HttpClientModule} from '@angular/common/http';
 import {API_URL, LoginService, XYZ_SOMETHING} from './services/login.service';
@@ -16,6 +19,9 @@ import {RouterModule, Routes} from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {myMaping} from './routes';
+import { VideosComponent } from './videos/videos.component';
+import { EmailsComponent } from './emails/emails.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,10 @@ import {myMaping} from './routes';
     LoginPageComponent,
     SignupPageComponent,
     NotFoundComponent,
-    DashboardComponent
+    DashboardComponent,
+    VideosComponent,
+    EmailsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +42,9 @@ import {myMaping} from './routes';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
+    MatIconModule,
+    MatMenuModule,
+    MatToolbarModule,
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,

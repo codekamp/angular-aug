@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button routerLink="/videos">Videos</button>
+    <button mat-button routerLink="/emails">Emails</button>
+    <button mat-button>Call To Actions</button>
+    <span class="flex-fill"></span>
+    <button mat-button [matMenuTriggerFor]="settings">Prashant Chaudhary
+      <mat-icon>expand_more</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-menu [overlapTrigger]="false" #settings="matMenu">
+  <button mat-menu-item>
+    <mat-icon>account_circle</mat-icon>
+    Accounts
+  </button>
+  <button mat-menu-item>Contacts</button>
+  <button mat-menu-item routerLink="/login">Logout</button>
+</mat-menu>

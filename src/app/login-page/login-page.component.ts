@@ -40,10 +40,10 @@ export class LoginPageComponent extends BaseComponent implements OnInit {
 
     console.log(this.loginForm.value);
 
-    // window.location.href = '/dashboard';
+    // window.location.href = '/videos';
 
-    // this.router.navigateByUrl('/dashboard');
-    this.router.navigate(['dashboard']);
+    // this.router.navigateByUrl('/videos');
+    this.router.navigate(['videos']);
   }
 }
 
