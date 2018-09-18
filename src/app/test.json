@@ -1,0 +1,22 @@
+{
+  "users": [
+    {"name": 1, "email": "prashant@codekamp.in", "phone": 9876543210},
+    {"name": "prashant", "email": "prashant@codekamp.in", "phone": 9876543210},
+    {"name": "prashant", "email": "prashant@codekamp.in", "phone": 9876543210}
+  ],
+  "hello": [
+    "a",
+    "bcd",
+    "pqr"
+  ]
+}
+
+// Keys in JSON string as always string.
+
+// Values in JSON string can be:
+// object - curly brace
+// array - square brace. Array of what?
+// string
+// number int or decimal
+// boolean
+// null

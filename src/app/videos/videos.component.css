@@ -1,0 +1,8 @@
+.wrapper {
+  flex-wrap: wrap;
+}
+
+.cards {
+  width: 250px;
+  margin-bottom: 20px;
+}

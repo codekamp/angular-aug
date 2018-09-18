@@ -1,0 +1,21 @@
+<users>
+    <user>
+        <name>Prashant</name>
+        <email>prashant@codekamp.in</email>
+        <phone>9999888800</phone>
+        <address>1014, mahagunpur, Gzb</address>
+    </user>
+    <user>
+        <name>Amit</name>
+        <email>amit@gmail.com</email>
+        <phone>9876543210</phone>
+        <address>1014, mahagunpur, Gzb</address>
+    </user>
+</users>
+
+
+<usernames>
+   <username>&lt;Amit&gt;</username>
+   <username>Sumit</username>
+   <username>Mohit</username>
+</usernames>

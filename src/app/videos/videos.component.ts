@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {InvidzService} from '../services/invidz.service';
 
 @Component({
   selector: 'ck-videos',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideosComponent implements OnInit {
 
-  constructor() { }
+  videos: any[];
+
+  constructor(private invidzService: InvidzService) { }
 
   ngOnInit() {
+    this.invidzService.getVideos().subscribe(responseBody => {
+      this.videos = responseBody.data;
+    });
   }
 
 }

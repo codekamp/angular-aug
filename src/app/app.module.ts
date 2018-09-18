@@ -7,7 +7,7 @@ import { SliderComponent } from './slider/slider.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageComponent } from './login-page/login-page.component';
 import {
-  MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatMenuModule,
+  MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatMenuModule, MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -22,6 +22,7 @@ import {myMaping} from './routes';
 import { VideosComponent } from './videos/videos.component';
 import { EmailsComponent } from './emails/emails.component';
 import { HeaderComponent } from './header/header.component';
+import {InvidzService} from './services/invidz.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { HeaderComponent } from './header/header.component';
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
+    MatSnackBarModule,
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
@@ -53,6 +55,7 @@ import { HeaderComponent } from './header/header.component';
   ],
   providers: [
     LoginService,
+    InvidzService,
     {provide: API_URL, useValue: 'http://hello.com'},
     {provide: XYZ_SOMETHING, useValue: 'some random value'}
   ],
