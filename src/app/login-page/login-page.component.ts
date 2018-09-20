@@ -43,9 +43,7 @@ export class LoginPageComponent extends BaseComponent implements OnInit {
 
     console.log(this.loginForm.value);
 
-    this.invidzService.login(username, password).subscribe(responseBody => {
-      console.log('login response is', responseBody);
-      localStorage.setItem('my_token', responseBody.token);
+    this.invidzService.login(username, password).subscribe(user => {
       this.router.navigate(['videos']);
     }, errorResponse => {
       console.log('error response is', errorResponse);
