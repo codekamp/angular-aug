@@ -23,6 +23,9 @@ import { VideosComponent } from './videos/videos.component';
 import { EmailsComponent } from './emails/emails.component';
 import { HeaderComponent } from './header/header.component';
 import {InvidzService} from './services/invidz.service';
+import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {reducer} from './reducers/index';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,9 @@ import {InvidzService} from './services/invidz.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(myMaping)
+    RouterModule.forRoot(myMaping),
+    StoreModule.forRoot(reducer),
+    StoreDevtoolsModule.instrument()
   ],
   providers: [
     LoginService,

@@ -32,41 +32,42 @@
 
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs/index';
+import {Observable} from 'rxjs/index';
 import {Video} from '../models/video.model';
 import {map} from 'rxjs/internal/operators';
 import {User} from '../models/user.model';
+import {Store} from '@ngrx/store';
+import {RootState} from '../reducers/index';
+import {UserAddAction} from '../actions/user';
 
 @Injectable()
 export class InvidzService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private store: Store<RootState>) {
   }
 
-  user$ = new BehaviorSubject<User>(null);
-
   login(email: string, pswd: string): Observable<User> {
-    return this.http.get('https://api.invidz.com/api/authenticate', {
+    return this.http.get<{user: User, token: string}>('https://api.invidz.com/api/authenticate', {
       params: {email: email, password: pswd}
     }).pipe(map(response => {
       localStorage.setItem('my_token', response.token);
       const user: User = response.user;
-      this.user$.next(user)
+      this.store.dispatch(new UserAddAction(user));
       return user;
     }));
   }
 
   getVideos(): Observable<Video[]> {
-    return this.http.get('https://api.invidz.com/api/videos', {
+    return this.http.get<{data: Video[]}>('https://api.invidz.com/api/videos', {
       headers: {Authorization: 'bearer ' + localStorage.getItem('my_token')}
     }).pipe(map(response => response.data));
   }
 
   getMe(): Observable<User> {
-    return this.http.get('https://api.invidz.com/api/me', {
+    return this.http.get<{data: User}>('https://api.invidz.com/api/me', {
       headers: {Authorization: 'bearer ' + localStorage.getItem('my_token')}
     }).pipe(map(response => {
       const user: User = response.data;
-      this.user$.next(user)
+      this.store.dispatch(new UserAddAction(user));
       return user;
     }));
   }
@@ -105,6 +106,7 @@ export class InvidzService {
 // 5. Reducer (single function) - function that is called by store whenever an action
 // ... is dispatched. It's the function that writes data to state.
 // ...Reducer function takes two paratmers: current state and dispatched action.
+// ... reducer is a non mutating function.
 
 
 export interface State {
