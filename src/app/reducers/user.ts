@@ -1,29 +1,22 @@
 import {User} from '../models/user.model';
-import {Video} from '../models/video.model';
 import {MyAction} from '../actions/index';
 
-export interface AppState {
-  user: User;
-  videos: Video[];
-  emails: any[];
+export interface UserState {
+  profile: User;
 }
 
-export const initialState: AppState = {
-  user: null,
-  videos: [],
-  emails: []
-}
+export const initialState: UserState = {
+  profile: null
+};
 
 
-export const appReducer = (currentState: AppState = initialState, action: MyAction): AppState => {
+export const userReducer = (currentState: UserState = initialState, action: MyAction): UserState => {
   console.log('appReducer called', currentState, action);
   switch (action.type) {
     case 'USER_ADD':
-      // return {user: action.payload, videos: currentState.videos};
-      return {...currentState, user: action.payload};
+      return {...currentState, profile: action.payload};
     case 'USER_DELETE':
-      // return {user: null, videos: currentState.videos};
-      return {...currentState, user: null};
+      return {...currentState, profile: null};
     default:
       return currentState;
   }

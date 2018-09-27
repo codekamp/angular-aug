@@ -25,7 +25,7 @@ import { HeaderComponent } from './header/header.component';
 import {InvidzService} from './services/invidz.service';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {reducer} from './reducers/index';
+import {rootReducer} from './reducers/index';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,7 @@ import {reducer} from './reducers/index';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(myMaping),
-    StoreModule.forRoot(reducer),
+    StoreModule.forRoot(rootReducer),
     StoreDevtoolsModule.instrument()
   ],
   providers: [
