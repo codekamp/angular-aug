@@ -1,5 +1,6 @@
 import {Video} from '../models/video.model';
 import {MyAction} from '../actions/index';
+import {VIDEO_UPDATE} from '../actions/video.action';
 
 
 
@@ -17,15 +18,32 @@ import {MyAction} from '../actions/index';
 export interface VideoState {
   ids: number[];
   entities: {[id: number]: Video};
+  categories: {[id: number]: number[]};
 }
 
-export const initialState = {
-
+export const initialState: VideoState = {
+  ids: [],
+  entities: {},
+  categories: {}
 };
 
 export const videoReducer = (currentState: VideoState = initialState, action: MyAction): VideoState => {
+  switch (action.type) {
+    case VIDEO_UPDATE:
+      // const newState = {...currentState};
+      // newState.entities = {...currentState.entities};
+      // newState.entities[action.payload.id] = action.payload;
+      // return newState;
 
+      return {
+        ...currentState,
+        entities: {...currentState.entities, [action.payload.id]: action.payload}
+      };
+    default:
+  }
 };
+
+export const _getVideoEntities = (state: VideoState) => state.entities;
 
 
 
