@@ -1,50 +1,63 @@
 import {Video} from '../models/video.model';
 import {MyAction} from '../actions/index';
-import {VIDEO_UPDATE} from '../actions/video.action';
+import {VIDEO_LIST, VIDEO_UPDATE} from '../actions/video.action';
+import {createEntityAdapter, EntityState} from '@ngrx/entity';
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-export interface VideoState {
-  ids: number[];
-  entities: {[id: number]: Video};
-  categories: {[id: number]: number[]};
+export interface VideoState extends EntityState<Video> {
+  // ids: number[];
+  // entities: { [id: number]: Video };
+  categories: { [id: number]: number[] };
 }
 
-export const initialState: VideoState = {
-  ids: [],
-  entities: {},
+export const videoStateAdapter = createEntityAdapter<Video>({
+  selectId: video => video.id
+});
+
+export const initialState: VideoState = videoStateAdapter.getInitialState({
   categories: {}
-};
+});
 
 export const videoReducer = (currentState: VideoState = initialState, action: MyAction): VideoState => {
   switch (action.type) {
     case VIDEO_UPDATE:
-      // const newState = {...currentState};
-      // newState.entities = {...currentState.entities};
-      // newState.entities[action.payload.id] = action.payload;
-      // return newState;
-
       return {
         ...currentState,
         entities: {...currentState.entities, [action.payload.id]: action.payload}
       };
+
+      return videoStateAdapter.updateOne({id: action.payload.id, changes: action.payload}, currentState);
+    case VIDEO_LIST: {
+      // const videoIds = action.payload.map(video => video.id);
+      //
+      // const entities = videoIds.reduce((previous, videoId, index) => {
+      //   return {...previous, [videoId]: action.payload[index]};
+      // }, {});
+      //
+      // return {
+      //   ...currentState,
+      //   ids: videoIds,
+      //   entities: entities
+      // };
+
+      return videoStateAdapter.addMany(action.payload, currentState);
+    }
+
+    case LOGOUT:
+      // const newState = videoStateAdapter.removeAll(currentState);
+      // return {...newState, categories: {}};
+
+      //
+      // const newState = {...currentState, categories: {}};
+      // return videoStateAdapter.removeAll(newState);
+
+      return videoStateAdapter.removeAll({...currentState, categories: {}});
     default:
+      return currentState;
   }
 };
 
-export const _getVideoEntities = (state: VideoState) => state.entities;
-
+export const _getCategoriesIdMap = (state: VideoState) => state.categories;
 
 
 //

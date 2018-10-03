@@ -1,34 +1,71 @@
 import {ActionReducerMap, createSelector} from '@ngrx/store';
 import {userReducer, UserState} from './user';
-import {videoReducer, VideoState} from './videos';
-import {_getIds, categoryReducer, CategoryState} from './category';
+import * as fromVideo from './videos';
+import * as fromCategory from './category';
 import {Video} from '../models/video.model';
-import {Observable} from 'rxjs/index';
 
 
 export interface RootState {
   user: UserState;
-  videos: VideoState;
-  category: CategoryState;
+  myvideos: fromVideo.VideoState;
+  category: fromCategory.CategoryState;
 }
 
 export const rootReducer: ActionReducerMap<RootState> = {
   user: userReducer,
-  videos: videoReducer,
-  category: categoryReducer
+  myvideos: fromVideo.videoReducer,
+  category: fromCategory.categoryReducer
 };
 
 
-export const getVideosByCatagory = (state: RootState): Observable<{ [id: number]: Video[] }> => {
-  const categoryIds: number[] = _getIds(state.category);
+// export const getVideosByCatagory = (state: RootState): Observable<{ [id: number]: Video[] }> => {
+//   const categoryIds: number[] = fromCategory._getIds(state.category);
+//
+//   return categoryIds.reduce((videoMap, catId) => {
+//     const videoIds: number[] = state.category.videos[catId];
+//     const videos: Video[] = videoIds.map(vidId => state.videos.entities[vidId]);
+//     return {...videoMap, [catId]: videos};
+//   }, {});
+// };
 
-  return categoryIds.reduce((videoMap, catId) => {
-    const videoIds: number[] = state.category.videos[catId];
-    const videos: Video[] = videoIds.map(vidId => state.videos.entities[vidId]);
-    return {...videoMap, [catId]: videos};
-  }, {});
-};
 
+export const getUserState = (state: RootState) => state.user;
+export const getVideoState = (state: RootState) => state.myvideos;
+export const getCategoryState = (state: RootState) => state.category;
+
+
+const fourSelectors = fromVideo.videoStateAdapter.getSelectors(getVideoState);
+
+const {getIds, getEntities} = fourSelectors;
+
+const a = 100;
+const b = 99;
+
+const hello = {a, b}; // {a: 100, b: 99}
+const hello = {a: b, b: a}; // {a: 99, b: 100}
+
+const data = {x: 99, y: 130, z: 400};
+const {x, y} = data; // const x = data.x; const y = data.y;
+
+
+console.log(x);
+
+export const getVideoIds = createSelector(getVideoState, fromVideo._getIds);
+export const getVideoEntities = createSelector(getVideoState, fromVideo._getEntities);
+
+export const getCategoryIds = createSelector(getCategoryState, fromCategory._getIds);
+export const getCategoryEntities = createSelector(getCategoryState, fromCategory._getEntities);
+export const getVideoIdsByCategory = createSelector(getCategoryState, fromCategory._getVideoIdsMap);
+
+export const getVideosByCatagory = createSelector(getVideoIdsByCategory, getVideoEntities,
+  (idsMapping, entities) => {
+    Object.keys(idsMapping).reduce((previous, id) => {
+      const videoIds = idsMapping[id];
+      const videos: Video[] = videoIds.map(vidId => entities[vidId]);
+      return {...previous, [id]: videos};
+    }, {});
+  }
+);
 
 // if you want to combine n functions using create selector, pass it n+1 functions
 // first n parameters will be function that will be combined
@@ -42,8 +79,6 @@ export const getVideosByCatagory = (state: RootState): Observable<{ [id: number]
 // ... of n functions
 // output will be same as output of last/(n+1)th function
 const outputFunc = createSelector();
-
-
 
 
 // this.store.select(getVideosByCatagory).subscribe(data => console.log(data));
@@ -63,6 +98,10 @@ const output = myArray.reduce((previous, current) => [current, ...previous, curr
 
 const xyz = {a: myArray, b: anotherArray};
 const abc = {a: myArray, b: anotherArray};
+
+// Object.keys(xyz) will be ['a', 'b']
+
+// Object.keys(videoEntities)  will be array of numbers
 
 const a = 'hello';
 
