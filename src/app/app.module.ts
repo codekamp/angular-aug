@@ -2,30 +2,32 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {RatingComponent} from './rating/rating.component';
+import {RatingComponent} from './components/rating/rating.component';
 import { SliderComponent } from './slider/slider.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 import {
-  MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatMenuModule, MatSnackBarModule,
+  MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule,
+  MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {HttpClientModule} from '@angular/common/http';
 import {API_URL, LoginService, XYZ_SOMETHING} from './services/login.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { SignupPageComponent } from './signup-page/signup-page.component';
+import { SignupPageComponent } from './components/signup-page/signup-page.component';
 import {RouterModule, Routes} from '@angular/router';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {myMaping} from './routes';
-import { VideosComponent } from './videos/videos.component';
-import { EmailsComponent } from './emails/emails.component';
-import { HeaderComponent } from './header/header.component';
+import { VideosComponent } from './components/videos/videos.component';
+import { EmailsComponent } from './components/emails/emails.component';
+import { HeaderComponent } from './components/header/header.component';
 import {InvidzService} from './services/invidz.service';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {rootReducer} from './reducers/index';
+import {VideoManager} from './managers/video.manager';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import {rootReducer} from './reducers/index';
     MatMenuModule,
     MatToolbarModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
@@ -61,6 +64,7 @@ import {rootReducer} from './reducers/index';
   providers: [
     LoginService,
     InvidzService,
+    VideoManager,
     {provide: API_URL, useValue: 'http://hello.com'},
     {provide: XYZ_SOMETHING, useValue: 'some random value'}
   ],

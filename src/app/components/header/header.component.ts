@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {InvidzService} from '../services/invidz.service';
-import {getUser, RootState} from '../reducers/index';
+import {InvidzService} from '../../services/invidz.service';
+import {getUser, RootState, getVideos} from '../../reducers/index';
 import {select, Store} from '@ngrx/store';
+import {VideoListSuccessAction} from '../../actions/video.action';
+import {VideoManager} from '../../managers/video.manager';
 
 @Component({
   selector: 'ck-header',
@@ -12,7 +14,10 @@ export class HeaderComponent implements OnInit {
 
   username = '';
 
-  constructor(private invidzService: InvidzService, private store: Store<RootState>) {
+  videoCount: number;
+
+  constructor(private invidzService: InvidzService, private store: Store<RootState>,
+              private videoManager: VideoManager) {
     console.log('HeaderComponent constrcutor');
   }
 
@@ -22,10 +27,12 @@ export class HeaderComponent implements OnInit {
       if (user) {
         this.username = user.first_name + ' ' + user.last_name;
       } else {
-        console.log('we need to load getMe')
+        console.log('we need to load getMe');
         this.invidzService.getMe().subscribe();
       }
     });
+
+    this.videoManager.getVideos().subscribe(videos => this.videoCount = videos.length);
   }
 
 }

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {BaseComponent} from '../base.component';
-import {Validators as MyValidtors} from '../validators';
+import {BaseComponent} from '../../base.component';
+import {Validators as MyValidtors} from '../../validators';
 import {Router} from '@angular/router';
-import {InvidzService} from '../services/invidz.service';
+import {InvidzService} from '../../services/invidz.service';
 import {MatSnackBar} from '@angular/material';
 
 @Component({

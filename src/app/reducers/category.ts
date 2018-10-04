@@ -16,7 +16,7 @@ export const initialState: CategoryState = {
 
 
 export const categoryReducer = (currentState: CategoryState = initialState, action: MyAction): CategoryState => {
-
+  return currentState;
 };
 
 export const _getIds = (state: CategoryState) => state.theIds;
@@ -26,16 +26,9 @@ export const _getVideoIdsMap = state => state.videos;
 
 
 
-
-
-
-
 export interface Category {
   id: number;
   title: string;
 }
-
-
-const videos = state.videos[10].map(id => videoState.entities[id]);
 
 

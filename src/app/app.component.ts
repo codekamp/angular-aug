@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {RatingComponent} from './rating/rating.component';
+import {RatingComponent} from './components/rating/rating.component';
 
 @Component({
   selector: 'ck-root',

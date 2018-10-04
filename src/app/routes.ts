@@ -1,10 +1,10 @@
-import {NotFoundComponent} from './not-found/not-found.component';
-import {SignupPageComponent} from './signup-page/signup-page.component';
-import {LoginPageComponent} from './login-page/login-page.component';
+import {NotFoundComponent} from './components/not-found/not-found.component';
+import {SignupPageComponent} from './components/signup-page/signup-page.component';
+import {LoginPageComponent} from './components/login-page/login-page.component';
 import {Routes} from '@angular/router';
-import {VideosComponent} from './videos/videos.component';
-import {EmailsComponent} from './emails/emails.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {VideosComponent} from './components/videos/videos.component';
+import {EmailsComponent} from './components/emails/emails.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 
 export const myMaping: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},

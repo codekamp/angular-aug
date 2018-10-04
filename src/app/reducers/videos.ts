@@ -1,13 +1,13 @@
 import {Video} from '../models/video.model';
 import {MyAction} from '../actions/index';
-import {VIDEO_LIST, VIDEO_UPDATE} from '../actions/video.action';
+import {VIDEO_LIST_REQUEST, VIDEO_LIST_SUCCESS, VIDEO_UPDATE} from '../actions/video.action';
 import {createEntityAdapter, EntityState} from '@ngrx/entity';
 
 
 export interface VideoState extends EntityState<Video> {
-  // ids: number[];
-  // entities: { [id: number]: Video };
   categories: { [id: number]: number[] };
+  loaded: boolean;
+  loading: boolean;
 }
 
 export const videoStateAdapter = createEntityAdapter<Video>({
@@ -15,19 +15,24 @@ export const videoStateAdapter = createEntityAdapter<Video>({
 });
 
 export const initialState: VideoState = videoStateAdapter.getInitialState({
-  categories: {}
+  categories: {},
+  loaded: false,
+  loading: false
 });
 
 export const videoReducer = (currentState: VideoState = initialState, action: MyAction): VideoState => {
   switch (action.type) {
     case VIDEO_UPDATE:
-      return {
-        ...currentState,
-        entities: {...currentState.entities, [action.payload.id]: action.payload}
-      };
+      // return {
+      //   ...currentState,
+      //   entities: {...currentState.entities, [action.payload.id]: action.payload}
+      // };
 
       return videoStateAdapter.updateOne({id: action.payload.id, changes: action.payload}, currentState);
-    case VIDEO_LIST: {
+    case VIDEO_LIST_REQUEST: {
+      return {...currentState, loading: true};
+    }
+    case VIDEO_LIST_SUCCESS: {
       // const videoIds = action.payload.map(video => video.id);
       //
       // const entities = videoIds.reduce((previous, videoId, index) => {
@@ -40,10 +45,10 @@ export const videoReducer = (currentState: VideoState = initialState, action: My
       //   entities: entities
       // };
 
-      return videoStateAdapter.addMany(action.payload, currentState);
+      return videoStateAdapter.addMany(action.payload, {...currentState, loaded: true, loading: false});
     }
 
-    case LOGOUT:
+    // case LOGOUT:
       // const newState = videoStateAdapter.removeAll(currentState);
       // return {...newState, categories: {}};
 
@@ -51,13 +56,15 @@ export const videoReducer = (currentState: VideoState = initialState, action: My
       // const newState = {...currentState, categories: {}};
       // return videoStateAdapter.removeAll(newState);
 
-      return videoStateAdapter.removeAll({...currentState, categories: {}});
+      // return videoStateAdapter.removeAll({...currentState, categories: {}});
     default:
       return currentState;
   }
 };
 
 export const _getCategoriesIdMap = (state: VideoState) => state.categories;
+export const _getLoaded = (state: VideoState) => state.loaded;
+export const _getLoading = (state: VideoState) => state.loading;
 
 
 //

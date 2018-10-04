@@ -3,10 +3,12 @@ import {MyAction} from '../actions/index';
 
 export interface UserState {
   profile: User;
+  loading: boolean;
 }
 
 export const initialState: UserState = {
-  profile: null
+  profile: null,
+  loading: false
 };
 
 
@@ -22,6 +24,8 @@ export const userReducer = (currentState: UserState = initialState, action: MyAc
   }
 };
 
+
+export const _getUser = (state: UserState) => state.profile;
 
 // const Amit = 'Hello world';
 // const name = 'I love Angular';
