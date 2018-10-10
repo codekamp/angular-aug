@@ -28,6 +28,7 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {rootReducer} from './reducers/index';
 import {VideoManager} from './managers/video.manager';
+import {AuthGuard} from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import {VideoManager} from './managers/video.manager';
     LoginService,
     InvidzService,
     VideoManager,
+    AuthGuard,
     {provide: API_URL, useValue: 'http://hello.com'},
     {provide: XYZ_SOMETHING, useValue: 'some random value'}
   ],
