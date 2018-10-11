@@ -4,8 +4,8 @@
     <button mat-button routerLink="/emails">Emails</button>
     <button mat-button>Call To Actions</button>
     <span class="flex-fill"></span>
-    <span>Video Count: {{videoCount}}</span>
-    <button mat-button [matMenuTriggerFor]="settings">{{username}}
+    <span>Video Count: {{videoCount | currency:'USD'}}</span>
+    <button mat-button [matMenuTriggerFor]="settings">{{username | xyzhello:5:'$$$'}}
       <mat-icon>expand_more</mat-icon>
     </button>
   </mat-toolbar-row>

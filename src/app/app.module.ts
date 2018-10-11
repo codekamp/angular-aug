@@ -7,7 +7,8 @@ import { SliderComponent } from './slider/slider.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import {
-  MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatMenuModule, MatProgressSpinnerModule,
+  MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatInputModule, MatMenuModule,
+  MatProgressSpinnerModule,
   MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
@@ -29,6 +30,8 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {rootReducer} from './reducers/index';
 import {VideoManager} from './managers/video.manager';
 import {AuthGuard} from './guards/auth.guard';
+import {AnonGuard} from './guards/anon.guard';
+import {TruncatePipe} from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import {AuthGuard} from './guards/auth.guard';
     DashboardComponent,
     VideosComponent,
     EmailsComponent,
-    HeaderComponent
+    HeaderComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ import {AuthGuard} from './guards/auth.guard';
     MatToolbarModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
@@ -67,9 +72,11 @@ import {AuthGuard} from './guards/auth.guard';
     InvidzService,
     VideoManager,
     AuthGuard,
+    AnonGuard,
     {provide: API_URL, useValue: 'http://hello.com'},
     {provide: XYZ_SOMETHING, useValue: 'some random value'}
   ],
+  entryComponents: [SignupPageComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

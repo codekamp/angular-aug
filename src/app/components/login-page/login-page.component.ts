@@ -4,7 +4,8 @@ import {BaseComponent} from '../../base.component';
 import {Validators as MyValidtors} from '../../validators';
 import {Router} from '@angular/router';
 import {InvidzService} from '../../services/invidz.service';
-import {MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
+import {SignupPageComponent} from '../signup-page/signup-page.component';
 
 @Component({
   selector: 'ck-login-page',
@@ -21,7 +22,8 @@ export class LoginPageComponent extends BaseComponent implements OnInit {
 
   constructor(private  invidzService: InvidzService,
               private router: Router,
-              private snackbar: MatSnackBar) {
+              private snackbar: MatSnackBar,
+              private dialog: MatDialog) {
     super();
   }
 
@@ -56,6 +58,10 @@ export class LoginPageComponent extends BaseComponent implements OnInit {
     console.log('login function completed');
 
     // this.router.navigate(['videos']);
+  }
+
+  signup() {
+    this.dialog.open(SignupPageComponent);
   }
 }
 
