@@ -32,6 +32,7 @@ import {VideoManager} from './managers/video.manager';
 import {AuthGuard} from './guards/auth.guard';
 import {AnonGuard} from './guards/anon.guard';
 import {TruncatePipe} from './pipes/truncate.pipe';
+import {FlexAlignmentHackDirective} from './directives/flex-alignment-hack';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {TruncatePipe} from './pipes/truncate.pipe';
     VideosComponent,
     EmailsComponent,
     HeaderComponent,
-    TruncatePipe
+    TruncatePipe,
+    FlexAlignmentHackDirective
   ],
   imports: [
     BrowserModule,

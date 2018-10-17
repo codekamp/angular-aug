@@ -1,7 +1,12 @@
-<div fxLayout="row wrap" fxLayoutGap="20px">
-  <mat-card class="cards" *ngFor="let video of videos">
+<div fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="center start">
+  <mat-card  [class.isLast]="last" class="cards" *ngFor="let video of videos; let last = last"
+             (click)="videoClicked(video.id)"
+  >
     <div>{{video.title}}</div>
   </mat-card>
+  <span class="flex-fix" *ckFlexAlignmentHack="5"></span>
 </div>
 
-<mat-spinner *ngIf="loading"></mat-spinner>
+<mat-spinner *ngIf="isLoading()"></mat-spinner>
+
+<!--[ngClass]="{isLast: last}"-->

@@ -14,8 +14,6 @@ import {SignupPageComponent} from '../signup-page/signup-page.component';
 })
 export class LoginPageComponent extends BaseComponent implements OnInit {
 
-  signup: boolean;
-
   loginForm: FormGroup;
   usernameControl: FormControl;
   passwordControl: FormControl;
