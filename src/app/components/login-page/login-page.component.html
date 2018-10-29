@@ -22,12 +22,12 @@
         <input formControlName="uname" id="hello" matInput placeholder="email" type="text">
         <mat-error>email is invalid</mat-error>
       </mat-form-field>
-      <mat-form-field>
-        <input [formControl]="passwordControl" matInput placeholder="password" type="password">
+      <mat-form-field #xyz>
+        <input #xyz [formControl]="passwordControl" matInput placeholder="password" type="password">
         <mat-error>Password is invalid</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" style="align-self: flex-end">Login</button>
-      <span>Don't have an accout? <a (click)="signup()">sign up</a></span>
+      <button [@spanState]="state" mat-raised-button color="primary" style="align-self: flex-end">Login</button>
+      <span [@spanState]="state" (mouseenter)="onMouseEnter(xyz.value)" (mouseleave)="onMouseLeave()">Don't have an accout? <a (click)="signup()">sign up</a></span>
     </form>
   </mat-card>
 </div>

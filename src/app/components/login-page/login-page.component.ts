@@ -1,22 +1,40 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BaseComponent} from '../../base.component';
-import {Validators as MyValidtors} from '../../validators';
 import {Router} from '@angular/router';
 import {InvidzService} from '../../services/invidz.service';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {SignupPageComponent} from '../signup-page/signup-page.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'ck-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
+  animations: [
+    trigger('spanState', [
+      state('noHover', style({
+        color: 'black',
+        'font-size': '12px'
+      })),
+      state('hover', style({
+        color: 'red',
+        'font-size': '30px'
+      })),
+      transition('hover <=> noHover', animate('1s ease-in'))
+      // transition('noHover => hover', animate('5s ease-out'))
+    ])
+  ]
 })
 export class LoginPageComponent extends BaseComponent implements OnInit {
 
   loginForm: FormGroup;
   usernameControl: FormControl;
   passwordControl: FormControl;
+
+  state = 'noHover';
+
+  @ViewChild('xyz') hello: ElementRef;
 
   constructor(private  invidzService: InvidzService,
               private router: Router,
@@ -60,6 +78,14 @@ export class LoginPageComponent extends BaseComponent implements OnInit {
 
   signup() {
     this.dialog.open(SignupPageComponent);
+  }
+
+  onMouseEnter() {
+    this.state = 'hover';
+  }
+
+  onMouseLeave() {
+    this.state = 'noHover';
   }
 }
 
